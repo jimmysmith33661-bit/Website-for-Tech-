@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>VOLT &amp; VICE – Repairs, Builds &amp; Gear</title>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600;700&family=Rubik+Mono+One&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0612;--panel:#140c24;--text:#eae6f5;--muted:#a79fc0;--pink:#ff2ea6;--cyan:#19f0ff;--lime:#b6ff3b;--line:#2d1f4d;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){--bg:#0a0612}}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--text);font-family:'Chakra Petch',system-ui,sans-serif;line-height:1.55;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0;background:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:48px 48px;opacity:.35;pointer-events:none;mask-image:radial-gradient(ellipse at 50% 0,#000,transparent 75%);-webkit-mask-image:radial-gradient(ellipse at 50% 0,#000,transparent 75%)}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px;position:relative}
+header{display:flex;justify-content:space-between;align-items:center;padding:20px 0;flex-wrap:wrap;gap:12px}
+.logo{font-family:'Rubik Mono One',sans-serif;font-size:1.1rem;color:var(--cyan);text-shadow:0 0 8px var(--cyan),0 0 22px var(--cyan)}
+nav{display:flex;gap:22px;font-weight:600}
+nav a:hover{color:var(--pink);text-shadow:0 0 10px var(--pink)}
+.hero{padding:70px 0 80px}
+h1{font-family:'Rubik Mono One',sans-serif;font-size:clamp(2.2rem,8vw,5.2rem);line-height:1.02;margin:0 0 22px;color:#fff;text-shadow:0 0 6px var(--pink),0 0 24px var(--pink),0 0 60px var(--pink);animation:flick 4s infinite}
+@keyframes flick{0%,18%,22%,62%,64%,100%{opacity:1}20%,63%{opacity:.55}}
+@media (prefers-reduced-motion:reduce){h1{animation:none}}
+.hero p{max-width:52ch;color:var(--muted);font-size:1.15rem;margin:0 0 30px}
+.btn{display:inline-block;padding:13px 26px;border:2px solid var(--cyan);color:var(--cyan);font-weight:700;border-radius:4px;box-shadow:0 0 12px rgba(25,240,255,.5),inset 0 0 12px rgba(25,240,255,.2);cursor:pointer;background:transparent;font-family:inherit;font-size:1rem;transition:.2s}
+.btn:hover{background:var(--cyan);color:#000}
+.btn.pink{border-color:var(--pink);color:var(--pink);box-shadow:0 0 12px rgba(255,46,166,.5),inset 0 0 12px rgba(255,46,166,.2);margin-left:10px}
+.btn.pink:hover{background:var(--pink);color:#000}
+section{padding:60px 0}
+h2{font-family:'Rubik Mono One',sans-serif;font-size:clamp(1.4rem,4vw,2.1rem);margin:0 0 30px;color:var(--lime);text-shadow:0 0 14px rgba(182,255,59,.6)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:20px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:22px;position:relative}
+.card h3{margin:0 0 8px;font-size:1.2rem}
+.card p{margin:0;color:var(--muted)}
+.card.c{border-color:var(--cyan);box-shadow:0 0 14px rgba(25,240,255,.25)}
+.card.p{border-color:var(--pink);box-shadow:0 0 14px rgba(255,46,166,.25)}
+.card.l{border-color:var(--lime);box-shadow:0 0 14px rgba(182,255,59,.22)}
+.tag{display:inline-block;font-size:.8rem;color:var(--lime);border:1px solid var(--lime);border-radius:3px;padding:1px 8px;margin-bottom:10px}
+.shop .card{display:flex;flex-direction:column;gap:10px}
+.price{font-size:1.5rem;font-weight:700;color:var(--cyan);text-shadow:0 0 8px var(--cyan)}
+.shop .row{display:flex;justify-content:space-between;align-items:center;margin-top:auto;gap:10px}
+.btn.sm{padding:8px 14px;font-size:.9rem}
+.cart{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));background:var(--panel);border:2px solid var(--pink);border-radius:30px;padding:10px 18px;font-weight:700;color:var(--pink);box-shadow:0 0 16px rgba(255,46,166,.6);z-index:5}
+.cart.empty{display:none}
+form.contact{display:grid;gap:14px;max-width:520px}
+input,textarea,select{background:var(--panel);border:1px solid var(--line);color:var(--text);padding:12px;border-radius:4px;font:inherit;width:100%}
+input:focus,textarea:focus,select:focus{outline:none;border-color:var(--cyan);box-shadow:0 0 10px rgba(25,240,255,.5)}
+.msg{color:var(--lime);min-height:1.5em}
+footer{border-top:1px solid var(--line);padding:30px 0;color:var(--muted);text-align:center;margin-top:30px}
+.term{font-family:ui-monospace,Menlo,Consolas,monospace;background:#05030b;border:1px solid var(--cyan);border-radius:6px;padding:14px 18px;max-width:520px;margin:0 0 26px;color:var(--lime);box-shadow:0 0 18px rgba(25,240,255,.3);font-size:.95rem}.term b{color:var(--pink)}.term i{display:inline-block;width:8px;height:1em;background:var(--lime);vertical-align:-2px;animation:blink 1s steps(1) infinite}@keyframes blink{50%{opacity:0}}@media (prefers-reduced-motion:reduce){.term i{animation:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div class="logo">VOLT &amp; VICE</div>
+  <nav><a href="#services">Services</a><a href="#projects">Projects</a><a href="#shop">Shop</a><a href="#quote">Get a quote</a></nav>
+</header>
+
+<div class="hero">
+  <h1>We fix it.<br>We build it.</h1>
+  <div class="term" aria-hidden="true">&gt; <b>scan</b> --device phone.laptop.console<br>&gt; fault found: cracked screen<br>&gt; status: fixing<i></i></div>
+  <p>Tech repairs, home repairs and custom builds done right, plus gadgets, tools and gear you can buy straight from the shop.</p>
+  <a class="btn" href="#quote">Get a free quote</a><a class="btn pink" href="#shop">Browse the shop</a>
+</div>
+
+<section id="services">
+  <h2>What we do</h2>
+  <div class="grid">
+    <div class="card c"><h3>Tech repair</h3><p>Phones, laptops, consoles and PCs: screens, batteries, ports, upgrades and data rescue.</p></div>
+    <div class="card c"><h3>Home repairs</h3><p>Leaks, broken fixtures, doors, fences, appliances and everything in between.</p></div>
+    <div class="card p"><h3>Building projects</h3><p>Decks, sheds, shelving, furniture and extensions, built to your measurements.</p></div>
+    <div class="card l"><h3>Renovations</h3><p>Kitchens, bathrooms and rooms refreshed from first plan to final coat of paint.</p></div>
+  </div>
+</section>
+
+<section id="projects">
+  <h2>Recent projects</h2>
+  <div class="grid">
+    <div class="card"><span class="tag">Build</span><h3>Backyard deck</h3><p>Hardwood deck with built-in bench seating and LED edge lighting.</p></div>
+    <div class="card"><span class="tag">Repair</span><h3>Bathroom leak fix</h3><p>Replaced failed tiles and waterproofing, same-week turnaround.</p></div>
+    <div class="card"><span class="tag">Build</span><h3>Garage workshop</h3><p>Custom benches, wall storage and a full power rewire.</p></div>
+  </div>
+</section>
+
+<section id="shop" class="shop">
+  <h2>The shop</h2>
+  <div class="grid" id="products"></div>
+</section>
+
+<section id="quote">
+  <h2>Get a quote</h2>
+  <form class="contact" id="qform">
+    <input name="name" placeholder="Your name" required aria-label="Your name">
+    <input name="email" type="email" placeholder="Email" required aria-label="Email">
+    <select name="type" aria-label="Job type"><option>Tech repair</option><option>Home repair</option><option>Building project</option><option>Renovation</option><option>Shop order question</option></select>
+    <textarea name="details" rows="4" placeholder="Tell us about the job" aria-label="Job details"></textarea>
+    <button class="btn" type="submit">Send request</button>
+    <div class="msg" id="msg" role="status"></div>
+  </form>
+</section>
+</div>
+
+<div class="cart empty" id="cart" role="status"></div>
+<footer>© 2026 Volt &amp; Vice. Repairs, builds and gear.</footer>
+
+<script>
+var items=[
+ {n:"Cordless drill kit",d:"18V, two batteries, case.",p:129,c:"c"},
+ {n:"Neon LED strip pack",d:"5 m RGB strip with remote.",p:34,c:"p"},
+ {n:"Precision screwdriver set",d:"64 bits for electronics repair.",p:29,c:"l"},
+ {n:"Smart power strip",d:"6 outlets, app control, surge guard.",p:42,c:"c"},
+ {n:"Phone repair kit",d:"Screen tools, suction cup, spudgers.",p:24,c:"p"},
+ {n:"Repair guide e-book",d:"Fix 50 common household problems.",p:15,c:"l"}
+];
+var count=0,total=0,box=document.getElementById('products'),cart=document.getElementById('cart');
+items.forEach(function(it){
+  var el=document.createElement('div');el.className='card '+it.c;
+  el.innerHTML='<h3></h3><p></p><div class="row"><span class="price">$'+it.p+'</span><button class="btn sm">Add to cart</button></div>';
+  el.querySelector('h3').textContent=it.n;el.querySelector('p').textContent=it.d;
+  el.querySelector('button').onclick=function(){count++;total+=it.p;cart.className='cart';cart.textContent='Cart: '+count+' item'+(count>1?'s':'')+' · $'+total};
+  box.appendChild(el);
+});
+document.getElementById('qform').onsubmit=function(e){e.preventDefault();document.getElementById('msg').textContent='Request received. We will reply by email soon.';e.target.reset()};
+</script>
+</body>
+</html>
